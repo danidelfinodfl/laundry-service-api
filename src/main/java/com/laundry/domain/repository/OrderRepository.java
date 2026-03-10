@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface OrderRepository {
 
-    Order save(Order pedido);
+    Order salvar(Order pedido);
 
     List<Order> listarTodos();
 
