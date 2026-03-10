@@ -6,9 +6,13 @@ import java.util.Optional;
 
 public interface OrderRepository {
 
-    Order save(Order order);
+    Order salvar(Order pedido);
 
-    Optional<Order> findById(String id);
+    Order save(Order Order);
 
-    List<Order> findAll();
+    List<Order> listarTodos();
+
+    Optional<Order> buscarPorId(String id);
+
+    List<Order> buscarPorCpfCliente(String cpfCliente);
 }
