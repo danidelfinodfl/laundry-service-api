@@ -16,6 +16,6 @@ public class OrderController {
 
     @PostMapping
     public Order createOrder(@RequestBody Order order) {
-        return createOrderUsecase.execute(order);
+        return createOrderUsecase.executar(order);
     }
 }

@@ -1,5 +1,6 @@
 package com.laundry.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +9,26 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
-
     private String id;
+
     private String nomeCliente;
+
+    @JsonIgnore
+    private String cpfCliente;
+
     private String cepCliente;
-    private String endereco;
+
+    private String descricaoPedido;
+
+    private String rua;
+
+    private String numero;
+
+    private String complemento;
+
+    private String cidade;
+
+    private String estado;
+
     private String status;
 }
