@@ -22,10 +22,6 @@ public class InMemoryOrderRepository implements OrderRepository {
         return Order;
     }
 
-    @Override
-    public Order save(Order Order) {
-        return null;
-    }
 
     @Override
     public List<Order> listarTodos() {
