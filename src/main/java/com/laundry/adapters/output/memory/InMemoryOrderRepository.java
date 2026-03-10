@@ -12,7 +12,7 @@ public class InMemoryOrderRepository implements OrderRepository {
     private final Map<String, Order> banco = new HashMap<>();
 
     @Override
-    public Order salvar(Order Order) {
+    public Order salvar (Order Order) {
 
         if (Order.getId() == null) {
             Order.setId(UUID.randomUUID().toString());
@@ -20,6 +20,11 @@ public class InMemoryOrderRepository implements OrderRepository {
 
         banco.put(Order.getId(), Order);
         return Order;
+    }
+
+    @Override
+    public Order save(Order Order) {
+        return null;
     }
 
     @Override
