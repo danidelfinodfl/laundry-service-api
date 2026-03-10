@@ -8,6 +8,8 @@ import com.laundry.domain.enums.OrderStatus;
 import com.laundry.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class CreateOrderUsecase {
 
@@ -28,6 +30,8 @@ public class CreateOrderUsecase {
         if (order.getCpfCliente() == null || order.getCpfCliente().isBlank()) {
             throw new RuntimeException("CPF do cliente é obrigatório");
         }
+
+        order.setStatus(OrderStatus.RECEBIDO);
 
         EnderecoViaCepResponse endereco = null;
 
@@ -70,8 +74,6 @@ public class CreateOrderUsecase {
                 order.setEstado(endereco.getUf());
             }
         }
-
-        OrderStatus.valueOf("RECEBIDO");
 
         return repository.salvar(order);
     }
