@@ -24,6 +24,9 @@ public class CreateOrderUsecase {
         if (order.getDescricaoPedido() == null || order.getDescricaoPedido().isBlank()) {
             throw new RuntimeException("Descrição do pedido é obrigatória.");
         }
+        if (order.getCpfCliente() == null || order.getCpfCliente().isBlank()) {
+            throw new RuntimeException("CPF do cliente é obrigatório");
+        }
 
         EnderecoViaCepResponse endereco = null;
 
