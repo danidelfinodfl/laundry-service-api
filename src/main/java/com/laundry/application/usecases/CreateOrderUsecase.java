@@ -4,6 +4,7 @@ import com.laundry.adapters.output.viacep.EnderecoViaCepResponse;
 import com.laundry.adapters.output.viacep.ViaCepClient;
 import com.laundry.config.CepNaoEncontradoException;
 import com.laundry.domain.entity.Order;
+import com.laundry.domain.enums.OrderStatus;
 import com.laundry.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -70,8 +71,8 @@ public class CreateOrderUsecase {
             }
         }
 
-        order.setStatus("RECEBIDO");
+        OrderStatus.valueOf("RECEBIDO");
 
-        return repository.save(order);
+        return repository.salvar(order);
     }
 }

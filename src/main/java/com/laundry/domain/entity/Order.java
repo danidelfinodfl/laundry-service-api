@@ -1,7 +1,7 @@
 package com.laundry.domain.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.laundry.domain.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -31,5 +31,5 @@ public class Order {
 
     private String estado;
 
-    private String status;
+    private OrderStatus status;
 }
