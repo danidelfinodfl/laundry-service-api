@@ -70,7 +70,7 @@ Demonstrar a construção de uma API backend com:
 
 # 🏗️ Arquitetura da aplicação
 
-A aplicação segue uma organização inspirada em **Clean Architecture**, separando responsabilidades em diferentes camadas.
+A aplicação segue uma organização inspirada em **Hexagonal Architecture**, separando responsabilidades em diferentes camadas.
 
 Principais camadas:
 
