@@ -8,6 +8,7 @@ import com.laundry.domain.enums.OrderStatus;
 import com.laundry.domain.repository.OrderRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Service
@@ -16,8 +17,7 @@ public class CreateOrderUsecase {
     private final OrderRepository repository;
     private final ViaCepClient viaCepClient;
 
-    public CreateOrderUsecase(OrderRepository repository,
-                              ViaCepClient viaCepClient) {
+    public CreateOrderUsecase(OrderRepository repository, ViaCepClient viaCepClient) {
         this.repository = repository;
         this.viaCepClient = viaCepClient;
     }
@@ -32,6 +32,8 @@ public class CreateOrderUsecase {
         }
 
         order.setStatus(OrderStatus.RECEBIDO);
+        order.setCreatedAt(Instant.now().toString());
+        order.setId(UUID.randomUUID().toString());
 
         EnderecoViaCepResponse endereco = null;
 

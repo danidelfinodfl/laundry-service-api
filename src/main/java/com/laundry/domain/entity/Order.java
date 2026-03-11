@@ -31,5 +31,7 @@ public class Order {
 
     private String estado;
 
+    private String createdAt;
+
     private OrderStatus status;
 }
