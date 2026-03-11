@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+//@Repository
 public class InMemoryOrderRepository implements OrderRepository {
 
     private final Map<String, Order> banco = new HashMap<>();
