@@ -1,5 +1,7 @@
 package com.laundry.domain.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.laundry.domain.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,10 +10,28 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Order {
-
     private String id;
+
     private String nomeCliente;
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String cpfCliente;
+
     private String cepCliente;
-    private String endereco;
-    private String status;
+
+    private String descricaoPedido;
+
+    private String rua;
+
+    private String numero;
+
+    private String complemento;
+
+    private String cidade;
+
+    private String estado;
+
+    private String createdAt;
+
+    private OrderStatus status;
 }
