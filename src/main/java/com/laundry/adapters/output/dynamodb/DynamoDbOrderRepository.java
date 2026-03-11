@@ -17,16 +17,30 @@ public class DynamoDbOrderRepository implements OrderRepository {
         this.dynamoDbClient = dynamoDbClient;
     }
 
+    private void putIfNotEmpty(Map<String, AttributeValue> item, String key, String value) {
+        if (value != null && !value.isBlank()) {
+            item.put(key, AttributeValue.builder().s(value).build());
+        }
+    }
+
     @Override
     public Order salvar(Order order) {
-
         Map<String, AttributeValue> item = new HashMap<>();
 
-        item.put("id", AttributeValue.builder().s(order.getId()).build());
-        item.put("cpfCliente", AttributeValue.builder().s(order.getCpfCliente()).build());
-        item.put("nomeCliente", AttributeValue.builder().s(order.getNomeCliente()).build());
-        item.put("descricaoPedido", AttributeValue.builder().s(order.getDescricaoPedido()).build());
-        item.put("status", AttributeValue.builder().s(order.getStatus().name()).build());
+        putIfNotEmpty(item, "id", order.getId());
+        putIfNotEmpty(item, "cpfCliente", order.getCpfCliente());
+        putIfNotEmpty(item, "nomeCliente", order.getNomeCliente());
+        putIfNotEmpty(item, "descricaoPedido", order.getDescricaoPedido());
+
+        putIfNotEmpty(item, "rua", order.getRua());
+        putIfNotEmpty(item, "numero", order.getNumero());
+        putIfNotEmpty(item, "complemento", order.getComplemento());
+        putIfNotEmpty(item, "cidade", order.getCidade());
+        putIfNotEmpty(item, "estado", order.getEstado());
+
+        putIfNotEmpty(item, "createdAt", order.getCreatedAt());
+
+        putIfNotEmpty(item, "status", order.getStatus().name());
 
         PutItemRequest request = PutItemRequest.builder()
                 .tableName("orders")
@@ -109,14 +123,41 @@ public class DynamoDbOrderRepository implements OrderRepository {
 
         Order order = new Order();
 
-        order.setId(item.get("id").s());
-        order.setCpfCliente(item.get("cpfCliente").s());
-        order.setNomeCliente(item.get("nomeCliente").s());
-        order.setDescricaoPedido(item.get("descricaoPedido").s());
-        order.setStatus(Enum.valueOf(
-                com.laundry.domain.enums.OrderStatus.class,
-                item.get("status").s()
-        ));
+        if(item.containsKey("id"))
+            order.setId(item.get("id").s());
+
+        if(item.containsKey("cpfCliente"))
+            order.setCpfCliente(item.get("cpfCliente").s());
+
+        if(item.containsKey("nomeCliente"))
+            order.setNomeCliente(item.get("nomeCliente").s());
+
+        if(item.containsKey("descricaoPedido"))
+            order.setDescricaoPedido(item.get("descricaoPedido").s());
+
+        if(item.containsKey("rua"))
+            order.setRua(item.get("rua").s());
+
+        if(item.containsKey("numero"))
+            order.setNumero(item.get("numero").s());
+
+        if(item.containsKey("complemento"))
+            order.setComplemento(item.get("complemento").s());
+
+        if(item.containsKey("cidade"))
+            order.setCidade(item.get("cidade").s());
+
+        if(item.containsKey("estado"))
+            order.setEstado(item.get("estado").s());
+
+        if(item.containsKey("createdAt"))
+            order.setCreatedAt(item.get("createdAt").s());
+
+        if(item.containsKey("status"))
+            order.setStatus(Enum.valueOf(
+                    com.laundry.domain.enums.OrderStatus.class,
+                    item.get("status").s()
+            ));
 
         return order;
     }
